@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-paper text-pine font-body;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+  /* visible keyboard focus everywhere */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #E8633A;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Signature element: ticket-stub card with perforated divider */
+  .ticket-stub {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(28, 43, 39, 0.08), 0 8px 24px rgba(28, 43, 39, 0.06);
+  }
+
+  .ticket-stub__divider {
+    position: relative;
+    width: 0;
+    border-left: 2px dashed #E4DFD2;
+  }
+
+  .ticket-stub__divider::before,
+  .ticket-stub__divider::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: #F6F3EC;
+    border-radius: 50%;
+  }
+  .ticket-stub__divider::before { top: -10px; }
+  .ticket-stub__divider::after { bottom: -10px; }
+
+  .btn-primary {
+    @apply bg-terracotta text-white font-semibold px-5 py-2.5 rounded-full hover:bg-[#d4552f] transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-pine/20 text-pine font-medium px-5 py-2.5 rounded-full hover:bg-pine/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-transparent border border-red-300 text-red-600 font-medium px-4 py-2 rounded-full hover:bg-red-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-pine/15 bg-white focus:border-terracotta outline-none transition-colors text-pine placeholder:text-stone;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono font-medium tracking-wide;
+  }
+  .status-pending { @apply bg-amber-50 text-amber-700; }
+  .status-confirmed { @apply bg-[#E8F3EE] text-confirmed; }
+  .status-cancelled { @apply bg-red-50 text-red-600; }
+}
